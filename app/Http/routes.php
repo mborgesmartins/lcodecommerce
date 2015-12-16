@@ -11,6 +11,74 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::controllers([
+
+    'auth' => 'Auth\AuthController',
+    'password' => 'Auth\PasswordController',
+
+]);
+
+Route::get('/', ['as' => 'home', 'uses' => 'StoreController@index']);
+Route::get('/home', ['as' => 'home', 'uses' => 'StoreController@index']);
+
+Route::group(['prefix'=>'store'], function() {
+
+    Route::get('category/{id}', ['as' => 'store.category', 'uses' => 'StoreController@category']);
+    Route::get('product/{id}', ['as' => 'store.product', 'uses' => 'StoreController@product']);
+    Route::get('cart', ['as' => 'store.cart', 'uses' => 'CartController@index']);
+    Route::get('cart/add/{id}', ['as' => 'store.cart.add', 'uses' => 'CartController@add']);
+    Route::get('cart/destroy/{id}', ['as' => 'store.cart.destroy', 'uses' => 'CartController@destroy']);
 });
+
+Route::group(['prefix'=>'checkout', 'middleware'=>'auth'], function() {
+
+    Route::get('place_order', ['as' => 'checkout.place.order', 'uses' => 'CheckoutController@place_order']);
+
+});
+
+Route::group(['prefix'=>'account', 'middleware'=>'auth'], function() {
+
+    Route::get('orders', ['as' => 'account.orders', 'uses' => 'AccountController@orders']);
+
+});
+
+
+Route::group(['prefix'=>'admin','middleware'=>'auth', 'where'=>['id'=>'[0-9]+']], function() {
+
+    Route::get('/', ['as' => 'admin', 'uses' => 'WelcomeController@index']);
+
+    Route::group(['prefix'=>'categories'], function() {
+
+        Route::get('', ['as' => 'categories', 'uses' => 'CategoriesController@index']);
+        Route::post('', ['as' => 'categories.store', 'uses' => 'CategoriesController@store']);
+        Route::get('create', ['as' => 'categories.create', 'uses' => 'CategoriesController@create']);
+        Route::get('{id}/delete', ['as' => 'categories.destroy', 'uses' => 'CategoriesController@destroy']);
+        Route::get('{id}/edit', ['as' => 'categories.edit', 'uses' => 'CategoriesController@edit']);
+        Route::put('{id}/update', ['as' => 'categories.update', 'uses' => 'CategoriesController@update']);
+
+    });
+
+    Route::group(['prefix'=>'products'], function() {
+
+        Route::get('', ['as'=>'products', 'uses'=>'ProductsController@index']);
+        Route::post('', ['as'=>'products.store', 'uses'=>'ProductsController@store']);
+        Route::get('create', ['as'=>'products.create', 'uses'=>'ProductsController@create']);
+        Route::get('{id}/delete', ['as'=>'products.destroy', 'uses'=>'ProductsController@destroy']);
+        Route::get('{id}/edit', ['as'=>'products.edit', 'uses'=>'ProductsController@edit']);
+        Route::put('{id}/update', ['as'=>'products.update', 'uses'=>'ProductsController@update']);
+
+
+        Route::group(['prefix'=>'images'], function() {
+
+            Route::get('{id}', ['as'=>'products.images', 'uses'=>'ProductsController@images_index']);
+            Route::get('{id}/create', ['as'=>'products.images.create', 'uses'=>'ProductsController@images_create']);
+            Route::post('{id}/store', ['as'=>'products.images.store', 'uses'=>'ProductsController@images_store']);
+            Route::get('{id}/destroy', ['as'=>'products.images.destroy', 'uses'=>'ProductsController@images_destroy']);
+
+        });
+
+    });
+
+});
+
+
