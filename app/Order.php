@@ -8,6 +8,7 @@ class Order extends Model
 {
     //
     protected $table='order';
+    protected $appends = array('statusname');
 
     protected $fillable = [
         'user_id',
@@ -20,6 +21,27 @@ class Order extends Model
     }
     public function items() {
         return $this->hasMany('CodeCommerce\OrderItems');
+
+    }
+
+    public function getStatusNameAttribute() {
+
+        switch ($this->status) {
+
+            case 0:
+                return 'Pendente';
+            case 1:
+                return 'Pago';
+            case 2:
+                return 'Expedido';
+            case 3:
+                return 'Entregue';
+            case 9:
+                return 'Cancelado';
+            default:
+                return 'Indefinido';
+
+        }
 
     }
 }

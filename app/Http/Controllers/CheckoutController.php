@@ -3,9 +3,11 @@
 namespace CodeCommerce\Http\Controllers;
 
 use CodeCommerce\Category;
+use CodeCommerce\Events\CheckoutEvent;
 use CodeCommerce\Http\Requests;
 use CodeCommerce\Order;
 use CodeCommerce\OrderItems;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class CheckoutController extends Controller
@@ -41,6 +43,8 @@ class CheckoutController extends Controller
                     ]);
             }
 
+
+            event( new CheckoutEvent($order, Auth::user()));
             $cart->clear();
 
             return view('checkout.place_order', ['order'=>$order, 'cart'=>'saved', 'categories'=>$categories]);

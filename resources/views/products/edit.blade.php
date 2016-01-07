@@ -6,7 +6,7 @@
         <h1>Altera Produto {{ $product->name  }}</h1>
 
         @if ($errors->any())
-            <div class="alert">
+            <div>
                 <ul>
                     @foreach($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -17,7 +17,6 @@
         @endif
 
         {!! Form::open(['route'=>['products.update', $product->id], 'method'=>'put']) !!}
-
 
         <div class="form-group">
 
