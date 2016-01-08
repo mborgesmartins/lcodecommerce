@@ -111,12 +111,12 @@ class ProductsController extends Controller
         $image->delete();
         $product_id = $image->product_id;
 
-        $filename = public_path() . '/uploads/' . $id . '/' . $image->extension;
+        $filename = public_path() . '/uploads/' . $id . '.' . $image->extension;
 
         if (file_exists($filename)) {
 
             //
-            Storage::disk('publiclocal')->delete($id . '/' . $image->extension);
+            Storage::disk('publiclocal')->delete($id . '.' . $image->extension);
 
         }
 

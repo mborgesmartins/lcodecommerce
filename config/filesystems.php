@@ -15,6 +15,7 @@ return [
     |
     */
 
+    //'default' => 's3',
     'default' => 'local',
 
     /*
@@ -69,10 +70,10 @@ return [
 
         's3' => [
             'driver' => 's3',
-            'key'    => 'your-key',
-            'secret' => 'your-secret',
-            'region' => 'your-region',
-            'bucket' => 'your-bucket',
+            'key'    => 'mborgesmartins@gmail.com',
+            'secret' => 'vega99',
+            'region' => 'oregon',
+            'bucket' => 'lcodecommerce',
         ],
 
         'rackspace' => [

@@ -21,6 +21,8 @@ Route::controllers([
 Route::get('/', ['as' => 'home', 'uses' => 'StoreController@index']);
 Route::get('/home', ['as' => 'home', 'uses' => 'StoreController@index']);
 
+Route::get('/teste', ['as' => 'teste', 'uses' => 'CheckoutController@test']);
+
 Route::group(['prefix'=>'store'], function() {
 
     Route::get('category/{id}', ['as' => 'store.category', 'uses' => 'StoreController@category']);
@@ -78,6 +80,11 @@ Route::group(['prefix'=>'admin','middleware'=>'auth', 'where'=>['id'=>'[0-9]+']]
         });
 
     });
+
+
+
+
+
 
 });
 
