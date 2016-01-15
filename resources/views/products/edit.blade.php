@@ -55,7 +55,7 @@
         <div class="form-group">
 
             {!! Form::label('featured','Destaque:') !!}
-            {!! Form::checkbox('featured', $product->featured, ['class'=>'form-control']) !!}
+            {!! Form::checkbox('featured', true, $product->featured, ['class'=>'field-control']) !!}
 
         </div>
 
@@ -64,7 +64,7 @@
         <div class="form-group">
 
             {!! Form::label('recommended','Recomendado:') !!}
-            {!! Form::checkbox('recommended', $product->recommended, ['class'=>'form-control']) !!}
+            {!! Form::checkbox('recommended', true, $product->recommended, ['class'=>'field-control']) !!}
 
         </div>
 

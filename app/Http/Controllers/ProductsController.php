@@ -40,6 +40,10 @@ class ProductsController extends Controller
     public function store(Requests\ProductsRequest $request) {
 
         $input = $request->all();
+
+        $input['featured'] = $input['featured'] == "" ? "0" : $input['featured'];
+        $input['recommended'] = $input['recommended'] == "" ? "0" : $input['recommended'];
+
         $this->productsmodel->fill($input);
         $this->productsmodel->save();
 
@@ -65,6 +69,9 @@ class ProductsController extends Controller
     }
 
     public function update(Requests\ProductsRequest $request, $id) {
+
+        $request['featured'] = $request['featured'] == "" ? "0" : $request['featured'];
+        $request['recommended'] = $request['recommended'] == "" ? "0" : $request['recommended'];
 
         $this->productsmodel->find($id)->update($request->all());
 
@@ -148,14 +155,19 @@ class ProductsController extends Controller
         foreach($tag_list as $tag) {
 
             $tag = ltrim($tag);
-            $tag_reg = Tag::ofName($tag)->get();
 
-            if ($tag_reg->count() == 0) {
+            if ($tag <> '') {
 
-                $tag_reg = Tag::create(['name' => $tag]);
-                $tag_id_list[] = $tag_reg->id;
-            } else
-                $tag_id_list[] = $tag_reg[0]->id;
+                $tag_reg = Tag::ofName($tag)->get();
+
+                if ($tag_reg->count() == 0) {
+
+                    $tag_reg = Tag::create(['name' => $tag]);
+                    $tag_id_list[] = $tag_reg->id;
+                } else
+                    $tag_id_list[] = $tag_reg[0]->id;
+
+            }
 
         }
 

@@ -50,13 +50,11 @@
 
         </div>
 
-        <!--featured Text Field -->
-
         <div class="form-group">
 
             {!! Form::hidden('featured', false) !!}
             {!! Form::label('featured','Destaque:') !!}
-            {!! Form::checkbox('featured', false, null, ['class'=>'form-control']) !!}
+            {!! Form::checkbox('featured', true, null, ['class'=>'field-control']) !!}
 
         </div>
 
@@ -66,7 +64,7 @@
 
             {!! Form::hidden('recommended', false) !!}
             {!! Form::label('recommended','Recomendado:') !!}
-            {!! Form::checkbox('recommended', false,  null, ['class'=>'form-control']) !!}
+            {!! Form::checkbox('recommended', true,  null, ['class'=>'field-control']) !!}
 
         </div>
 
