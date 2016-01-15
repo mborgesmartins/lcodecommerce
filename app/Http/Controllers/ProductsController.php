@@ -6,7 +6,7 @@ use CodeCommerce\Category;
 use CodeCommerce\Http\Requests;
 use CodeCommerce\Product;
 use CodeCommerce\ProductImages;
-use Illuminate\Http\Request;
+use CodeCommerce\Tag;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
@@ -43,6 +43,11 @@ class ProductsController extends Controller
         $this->productsmodel->fill($input);
         $this->productsmodel->save();
 
+        $id = $this->productsmodel->id;
+        $tags =$request->get('tags');
+
+        $this->savetags($id, $tags);
+
         return redirect()->route('products');
 
     }
@@ -53,13 +58,19 @@ class ProductsController extends Controller
 
         $categories = $category->lists('name','id');
 
-        return view('products.edit', compact('product'), compact('categories'));
+        $tags = $product->tag_list;
+
+        return view('products.edit', compact('product','categories'), compact('tags'));
 
     }
 
     public function update(Requests\ProductsRequest $request, $id) {
 
         $this->productsmodel->find($id)->update($request->all());
+
+        $tags = $request->get('tags');
+
+        $this->savetags($id, $tags);
 
         return redirect()->route('products');
 
@@ -121,6 +132,35 @@ class ProductsController extends Controller
         }
 
         return redirect()->route('products.images', ['id'=>$product_id]);
+
+    }
+
+    private function savetags($id, $tags) {
+
+        // transforma objeto  de csv para lista
+        $tag_list = explode(',', $tags);
+
+        $tag_list = array_map('trim', $tag_list);
+
+        $tag_id_list = [];
+
+        // atualiza tabela de tags
+        foreach($tag_list as $tag) {
+
+            $tag = ltrim($tag);
+            $tag_reg = Tag::ofName($tag)->get();
+
+            if ($tag_reg->count() == 0) {
+
+                $tag_reg = Tag::create(['name' => $tag]);
+                $tag_id_list[] = $tag_reg->id;
+            } else
+                $tag_id_list[] = $tag_reg[0]->id;
+
+        }
+
+        $product = $this->productsmodel->find($id);
+        $product->tags()->sync($tag_id_list);
 
     }
 

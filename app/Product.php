@@ -30,7 +30,6 @@ class Product extends Model
     }
 
     public function tags() {
-
         return $this->belongsToMany('CodeCommerce\Tag');
     }
 
@@ -51,6 +50,14 @@ class Product extends Model
 
     public function order_items() {
         return $this->HasMany('CodeCommerce\OrderItems');
+
+    }
+
+    public function getTagListAttribute() {
+
+        $tags = $this->tags->lists('name');
+
+        return $tags->implode(',');
 
     }
 

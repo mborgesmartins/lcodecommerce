@@ -70,6 +70,13 @@
 
         </div>
 
+        <div class="form-group">
+
+            {!! Form::label('tags','Tags(lista de valores entre vírgulas):') !!}
+            {!! Form::text('tags', null, ['class'=>'form-control']) !!}
+
+        </div>
+
         <!--Form submit button -->
 
         <div class="form-group">

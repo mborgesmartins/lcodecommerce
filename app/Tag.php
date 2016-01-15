@@ -17,4 +17,9 @@ class Tag extends Model
 
         return $this->belongsToMany('CodeCommerce\Product');
     }
+
+    public function scopeofName($query, $name) {
+
+        return $query->whereName($name);
+    }
 }

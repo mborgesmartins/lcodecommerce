@@ -11,6 +11,8 @@
 |
 */
 
+
+
 Route::controllers([
 
     'auth' => 'Auth\AuthController',
@@ -80,10 +82,6 @@ Route::group(['prefix'=>'admin','middleware'=>'auth', 'where'=>['id'=>'[0-9]+']]
         });
 
     });
-
-
-
-
 
 
 });
