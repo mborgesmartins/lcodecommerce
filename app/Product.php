@@ -48,6 +48,15 @@ class Product extends Model
         return $query->where('category_id','=',$type);
     }
 
+    public function scopeOfTag($query, $id) {
+
+        return $this->whereHas('tags',
+            function ($query) use ($id) { $query->where('tag_id',$id); }
+        );
+
+
+    }
+
     public function order_items() {
         return $this->HasMany('CodeCommerce\OrderItems');
 

@@ -38,13 +38,23 @@
                     <h2>{{ $product->category->name }} :: {{ $product->name }}</h2>
 
                     <p>{{ $product->description }}</p>
-                                <span>
-                                    <span>{{ $product->price }}</span>
-                                        <a href= "{{ route('store.cart.add',['id'=>$product->id])  }}" class="btn btn-fefault cart">
-                                            <i class="fa fa-shopping-cart"></i>
-                                            Adicionar no Carrinho
-                                        </a>
-                                </span>
+                    <span>
+                        <span>{{ $product->price }}</span>
+                            <a href= "{{ route('store.cart.add',['id'=>$product->id])  }}" class="btn btn-fefault cart">
+                                <i class="fa fa-shopping-cart"></i>
+                                Adicionar no Carrinho
+                            </a>
+                    </span>
+
+                    <br>
+
+                    @if($product->tags->count() > 0)
+                        Tags:
+                        @foreach($product->tags as $tag)
+                            <a href="{{ route('store.tag', ['id'=>$tag->id]) }}">{{$tag->name}}</a>
+                        @endforeach
+                    @endif
+
                 </div>
                 <!--/product-information-->
             </div>

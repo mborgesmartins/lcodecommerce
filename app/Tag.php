@@ -22,4 +22,13 @@ class Tag extends Model
 
         return $query->whereName($name);
     }
+
+    public function scopeOfProdcut($query, $id) {
+
+       return $this->whereHas('products',
+             function ($query) use ($id) { $query->where('product_id',$id); }
+       );
+
+
+    }
 }
