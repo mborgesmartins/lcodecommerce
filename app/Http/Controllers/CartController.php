@@ -49,7 +49,6 @@ class CartController extends Controller
 
         Session::set('cart', $cart);
 
-
         return redirect()->route('store.cart');
 
     }
@@ -80,5 +79,30 @@ class CartController extends Controller
             $cart = $this->cart;
 
         return $cart;
+    }
+
+    /**
+     * @return Cart
+     */
+    public function update_qty($id, $qty)
+    {
+        if (Session::has('cart'))
+
+            $cart = Session::get('cart');
+
+        else
+
+            $cart = $this->cart;
+
+        $conta = 0;
+
+
+        $cart->update_qty($id, $qty);
+
+        //dd($cart);
+
+        Session::set('cart', $cart);
+
+        return "Cart Atualizado com sucesso";
     }
 }

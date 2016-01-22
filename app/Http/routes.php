@@ -33,6 +33,7 @@ Route::group(['prefix'=>'store'], function() {
     Route::get('cart', ['as' => 'store.cart', 'uses' => 'CartController@index']);
     Route::get('cart/add/{id}', ['as' => 'store.cart.add', 'uses' => 'CartController@add']);
     Route::get('cart/destroy/{id}', ['as' => 'store.cart.destroy', 'uses' => 'CartController@destroy']);
+    Route::get('cart/update_qty/{id}/{qty}', ['as' => 'store.cart.update_qty', 'uses' => 'CartController@update_qty']);
 });
 
 Route::group(['prefix'=>'checkout', 'middleware'=>'auth'], function() {

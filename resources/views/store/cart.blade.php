@@ -36,15 +36,16 @@
 
                                 </td>
                                 <td class="cart_price">
-                                    R$ {{ $item['price'] }}
+                                    R$ <span  id="{{"price_" . $id}}">{{ $item['price'] }}</span>
 
                                 </td>
                                 <td class="cart_qty">
-                                    {{ $item['qtd'] }}
-
+                                    <button type="button" class="chg_qty" id="{{"inc_qty" . $id}}">+</button>
+                                    <span id="{{ "qty_" . $id }}">{{ $item['qtd'] }}</span>
+                                    <button type="button" class="chg_qty" id="{{"dec_qty" . $id}}">-</button>
                                 </td>
                                 <td class="cart_total">
-                                    <p class="cart_total_price"> {{ $item['price'] * $item['qtd']}}</p>
+                                    <p class="cart_total_price" id="{{"total_" . $id}}"> {{ $item['price'] * $item['qtd']}}</p>
 
                                 </td>
                                 <td class="cart_delete">
@@ -81,4 +82,56 @@
         </div>
 
     </section>
-@stop
+
+@endsection
+
+@section('script')
+
+    <script type="text/javascript">
+
+        $( document ).ready(function() {
+
+            $(".chg_qty").click(function (event) {
+
+                inc = 0;
+                sinal = $('#'+this.id).text();
+                if (sinal == '+')
+                    id = (this.id).replace('inc_qty','');
+                else
+                    id = (this.id).replace('dec_qty','');
+
+                qty_id = '#qty_' + id;
+
+                qty = parseInt($(qty_id).text().replace('qty_', ''));
+                if (sinal == '+') inc = 1; else { if (qty > 1) inc = -1 }
+
+                qty += inc;
+
+                $(qty_id).text(qty);
+                price = parseInt($('#price_' + id).text());
+
+                total = qty * price;
+
+                $('#total_'+id).text(total);
+
+
+                url = '/store/cart/update_qty/' + id + '/' + $(qty_id).text();
+
+                $.ajax({
+                    url: url,
+                    type: 'GET',
+                    data: {} ,
+                    success: function (result) {
+                        // use it here
+                        //sessionData = result.sessionData
+                    }
+                });
+            });
+
+        });
+
+    </script>
+
+@endsection
+
+

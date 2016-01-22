@@ -1,3 +1,4 @@
+/*
 jQuery(function($) {'use strict',
 
 	var form = $('.contact-form');
@@ -12,7 +13,7 @@ jQuery(function($) {'use strict',
 	});
 
 });
-
+*/
 // Google Map Customization
 (function(){
 

@@ -10,6 +10,10 @@
 
     <link href="{{ elixir('css/all.css') }}" rel="stylesheet">
 
+    <script src="{{ elixir('js/all.js') }}" type="text/javascript"></script>
+
+
+    @yield('script')
 
 </head><!--/head-->
 
@@ -150,9 +154,9 @@
 <script src="js/jquery.scrollUp.min.js"></script>
 <script src="js/jquery.prettyPhoto.js"></script>
 <script src="js/main.js"></script>
+<link href="{{ elixir('js/all.js') }}" rel="script">
 -->
 
-<link href="{{ elixir('js/all.js') }}" rel="script">
 
 </body>
 </html>

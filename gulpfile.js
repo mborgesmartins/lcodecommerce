@@ -26,14 +26,16 @@ elixir(function(mix) {
          'responsive.css'], 'public/css/all.css');
 
      mix.scripts ([
+      'jquery.min.js',
       'bootstrap.min.js',
-      'contact.js',
-      'gmaps.js',
-      'html5shiv.js',
-      'jquery.js',
+      'jquery.mask.min.js',
       'jquery.prettyPhoto.js',
       'jquery.scrollUp.min.js',
-      'main.js',
+      'jquerysession.js',
+      //'gmaps.js',
+      //'contact.js',
+      'html5shiv.js',
+      //'main.js',
       'price-range.js'], 'public/js/all.js');
 
     mix.version(['css/all.css', 'js/all.js']);

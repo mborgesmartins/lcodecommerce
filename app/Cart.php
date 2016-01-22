@@ -66,6 +66,13 @@ class Cart
 
     }
 
+    public function update_qty($id_p, $qty) {
+
+        $this->items[$id_p]['qtd'] = $qty;
+        return $this->items;
+
+    }
+
     public function clear() {
 
         $this->items = [];
