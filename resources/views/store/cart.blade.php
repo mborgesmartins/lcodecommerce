@@ -63,7 +63,7 @@
                             <td colspan="6">
                                 <div class="pull-right">
                                     <span style="margin-right: 80px">
-                                        TOTAL: R$ {{ $cart->getTotal()  }}
+                                        TOTAL: R$ <span id="total_geral"> {{ $cart->getTotal()  }} </span>
                                     </span>
                                     <a href="{{ route('checkout.place.order') }}" class="btn btn-success">Fechar o Pedido</a>
                                 </div>
@@ -93,28 +93,53 @@
 
             $(".chg_qty").click(function (event) {
 
+                // identifica se é incremento ou decremento
                 inc = 0;
                 sinal = $('#'+this.id).text();
+
+                // recupera id da linha
                 if (sinal == '+')
                     id = (this.id).replace('inc_qty','');
                 else
                     id = (this.id).replace('dec_qty','');
 
+                // recupera id da quantidade
                 qty_id = '#qty_' + id;
 
+                // obtem a quantidade
                 qty = parseInt($(qty_id).text().replace('qty_', ''));
+
+                // calcula o incremento ou decremento
                 if (sinal == '+') inc = 1; else { if (qty > 1) inc = -1 }
 
-                qty += inc;
+                // opbtem preço
+                price = parseInt($("#price_" + id ).text());
 
-                $(qty_id).text(qty);
-                price = parseInt($('#price_' + id).text());
-
+                // calcula total da linha atual
                 total = qty * price;
 
+                // calcula total geral menos total atual
+                total_geral = parseInt($("#total_geral").text());
+
+
+                // retira do total geral total atual
+                total_geral = total_geral - total;
+
+                // incrementa / decrementa total
+                qty += inc;
+
+                // atualiza quantidade na tela
+                $(qty_id).text(qty);
+
+                // calcula novo total
+                total = qty * price;
                 $('#total_'+id).text(total);
 
+                // atualiza total geral
+                total_geral = total_geral + total;
+                $("#total_geral").text(total_geral)
 
+                // monta url para atualizar session
                 url = '/store/cart/update_qty/' + id + '/' + $(qty_id).text();
 
                 $.ajax({
