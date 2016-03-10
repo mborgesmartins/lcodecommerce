@@ -16,10 +16,11 @@ class UserTableSeeder extends Seeder
 
         factory('CodeCommerce\User',1)->create([
 
-            'name' => 'Marcelo Borges',
-            'email' => 'mborgesmartins@gmail.com',
+            'name' => 'Administrator',
+            'email' => 'admin@servidor.com',
             'password' => bcrypt('123456'),
             'remember_token' => '123456',
+            'is_admin' => true
 
     ]);
 

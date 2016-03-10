@@ -17,6 +17,7 @@ $factory->define(CodeCommerce\User::class, function (Faker\Generator $faker) {
         'email' => $faker->email,
         'password' => bcrypt(str_random(10)),
         'remember_token' => str_random(10),
+        'is_admin' => false
     ];
 });
 

@@ -1,5 +1,6 @@
 @extends('app')
-    @section('content')
+
+@section('content')
 
     <div class='container'>
 
@@ -36,4 +37,4 @@
 
     </div>
 
-    @endsection
+@endsection
