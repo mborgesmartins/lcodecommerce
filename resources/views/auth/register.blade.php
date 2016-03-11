@@ -35,6 +35,56 @@
 							</div>
 						</div>
 
+						<h3>Endereço</h3><br>
+
+						<div class="form-group">
+							<label class="col-md-4 control-label">Logradouro</label>
+							<div class="col-md-6">
+								<input type="text" class="form-control" name="end_logradouro" value="{{ old('end_logradouro') }}">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-md-4 control-label">Número</label>
+							<div class="col-md-6">
+								<input type="text" class="form-control" name="end_numero" value="{{ old('end_numero') }}">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-md-4 control-label">Complemento</label>
+							<div class="col-md-6">
+								<input type="text" class="form-control" name="end_complemento" value="{{ old('end_complemento') }}">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-4 control-label">Bairro</label>
+							<div class="col-md-6">
+								<input type="text" class="form-control" name="end_bairro" value="{{ old('end_bairro') }}">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-md-4 control-label">Cidade</label>
+							<div class="col-md-6">
+								<input type="text" class="form-control" name="end_cidade" value="{{ old('end_cidade') }}">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-md-4 control-label">UF</label>
+							<div class="col-md-6">
+								<input type="text" class="form-control" name="end_uf" value="{{ old('end_uf') }}">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-md-4 control-label">CEP</label>
+							<div class="col-md-6">
+								<input type="text" class="form-control" name="end_cep" value="{{ old('end_ceṕ') }}">
+							</div>
+						</div>
+
 						<div class="form-group">
 							<label class="col-md-4 control-label">Password</label>
 							<div class="col-md-6">

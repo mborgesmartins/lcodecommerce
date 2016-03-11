@@ -16,6 +16,15 @@ class Order extends Model
         'status'
         ];
 
+    private $status_types = [
+
+        0 => 'Pendente',
+        1 => 'Pago',
+        2 => 'Expedido',
+        3 => 'Entregue',
+        9 => 'Cancelado'
+    ];
+
     public function user() {
         return $this->belongsTo('CodeCommerce\User');
     }
@@ -26,6 +35,15 @@ class Order extends Model
 
     public function getStatusNameAttribute() {
 
+        $valid_ids = [];
+        foreach ($this->status_types as $id=>$nome) $valid_id[] = $id;
+
+        if (in_array($this->status, $valid_id))
+            return $this->status_types[$this->status];
+        else
+            return 'Indefinido';
+
+        /*
         switch ($this->status) {
 
             case 0:
@@ -42,6 +60,11 @@ class Order extends Model
                 return 'Indefinido';
 
         }
+        */
+    }
 
+    public function getStatusTypes() {
+
+        return $this->status_types;
     }
 }

@@ -45,6 +45,8 @@ Route::group(['prefix'=>'checkout', 'middleware'=>'auth'], function() {
 Route::group(['prefix'=>'account', 'middleware'=>'auth'], function() {
 
     Route::get('orders', ['as' => 'account.orders', 'uses' => 'AccountController@orders']);
+    Route::get('edit_status_order/{id}', ['as' => 'account.edit_status_order', 'uses' => 'AccountController@edit_status_order']);
+    Route::put('save_status_order', ['as' => 'account.save_status_order', 'uses' => 'AccountController@save_status_order']);
 
 });
 
