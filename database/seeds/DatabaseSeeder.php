@@ -31,7 +31,8 @@ class DatabaseSeeder extends Seeder
         $this->command->info('Truncating existing tables');
         foreach ($tables as $table) {
             $this->command->info('Truncating table ' . $table);
-            DB::table($table)->truncate();
+            DB::statement('TRUNCATE TABLE ' . $table .';');
+            //DB::table($table)->truncate();
         }
 
 // Call all the seeders
