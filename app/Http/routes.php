@@ -54,6 +54,7 @@ Route::group(['prefix'=>'account', 'middleware'=>'auth'], function() {
 Route::group(['prefix'=>'admin','middleware'=>'auth.admin', 'where'=>['id'=>'[0-9]+']], function() {
 
     Route::get('/', ['as' => 'admin', 'uses' => 'WelcomeController@index']);
+    Route::get('orders', ['as' => 'admin.orders', 'uses' => 'AdminController@order_list']);
 
     Route::group(['prefix'=>'categories'], function() {
 

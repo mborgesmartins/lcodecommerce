@@ -37,6 +37,7 @@
 					<li><a href="{{ route('home') }}">Home</a></li>
 					<li><a href="{{ route('categories') }}">Categorias</a></li>
 					<li><a href="{{ route('products') }}">Produtos</a></li>
+					<li><a href="{{ route('admin.orders') }}">Pedidos</a></li>
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">

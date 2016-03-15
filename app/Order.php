@@ -33,14 +33,15 @@ class Order extends Model
 
     }
 
-    public function getStatusNameAttribute() {
+    public function getStatusNameAttribute()
+    {
 
         $valid_ids = [];
-        foreach ($this->status_types as $id=>$nome) $valid_id[] = $id;
+        foreach ($this->status_types as $id => $nome) $valid_ids[] = $id;
 
-        if (in_array($this->status, $valid_id))
+        if (in_array($this->status, $valid_ids)) {
             return $this->status_types[$this->status];
-        else
+        } else
             return 'Indefinido';
 
         /*

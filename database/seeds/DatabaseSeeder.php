@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
         Model::unguard();
         $this->command->info('Unguarding models');
         Model::unguard();
-        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        //DB::statement('SET FOREIGN_KEY_CHECKS=0;');
 
         $tables = [
             'product_tag',
@@ -31,15 +31,15 @@ class DatabaseSeeder extends Seeder
         $this->command->info('Truncating existing tables');
         foreach ($tables as $table) {
             $this->command->info('Truncating table ' . $table);
-            DB::statement('TRUNCATE TABLE `' . $table .'`;');
-            //DB::table($table)->truncate();
+            //DB::statement('TRUNCATE TABLE `' . $table .'`;');
+            DB::table($table)->truncate();
         }
 
 // Call all the seeders
 
-        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+        //DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
-        //$this->call('CategoryTableSeeder');
+        $this->call('CategoryTableSeeder');
         $this->call('ProductTableSeeder');
         $this->call('UserTableSeeder');
 

@@ -39,7 +39,7 @@ class AccountController extends Controller
 
         $order->update(['status'=>$status]);
 
-        return redirect()->route('account.orders');
+        return redirect()->route('admin.orders');
 
 
     }

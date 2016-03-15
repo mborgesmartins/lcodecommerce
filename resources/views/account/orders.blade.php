@@ -16,7 +16,6 @@
                             <td class="itens">Itens</td>
                             <td class="total">Total</td>
                             <td class="status">Status</td>
-                            <td class="status">Ação</td>
 
                         </tr>
                     </thead>
@@ -38,9 +37,6 @@
                                 </td>
                                 <td class="cart_total">{{ $order->total}}</td>
                                 <td class="cart_status">{{ $order->status_name}}</td>
-                                <td class="cart_status">
-                                    <a href="{{ route('account.edit_status_order', ['id'=>$order->id]) }}">Atualiza Status</a>
-                                </td>
                             </tr>
 
                         @empty
