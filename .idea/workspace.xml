@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="eaddb96f-27a4-496f-8de5-a81f2f728022" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/CheckoutController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/CheckoutController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/routes.php" afterPath="$PROJECT_DIR$/app/Http/routes.php" />
     </list>
     <ignored path="laravel_commerce.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -25,11 +24,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="CheckoutController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CheckoutController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CheckoutController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7278481">
-              <caret line="94" column="15" selection-start-line="94" selection-start-column="15" selection-end-line="94" selection-end-column="20" />
+            <state vertical-scroll-proportion="-14.75">
+              <caret line="114" column="0" selection-start-line="114" selection-start-column="0" selection-end-line="114" selection-end-column="0" />
               <folding>
                 <element signature="e#49#75#0#PHP" expanded="true" />
               </folding>
@@ -57,10 +56,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="routes.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.125">
+            <state vertical-scroll-proportion="0.4620253">
               <caret line="45" column="92" selection-start-line="45" selection-start-column="92" selection-end-line="45" selection-end-column="92" />
               <folding />
             </state>
@@ -743,21 +742,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.125">
-          <caret line="45" column="92" selection-start-line="45" selection-start-column="92" selection-end-line="45" selection-end-column="92" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CheckoutController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7278481">
-          <caret line="94" column="15" selection-start-line="94" selection-start-column="15" selection-end-line="94" selection-end-column="20" />
+        <state vertical-scroll-proportion="-14.75">
+          <caret line="114" column="0" selection-start-line="114" selection-start-column="0" selection-end-line="114" selection-end-column="0" />
           <folding>
             <element signature="e#49#75#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4620253">
+          <caret line="45" column="92" selection-start-line="45" selection-start-column="92" selection-end-line="45" selection-end-column="92" />
+          <folding />
         </state>
       </provider>
     </entry>

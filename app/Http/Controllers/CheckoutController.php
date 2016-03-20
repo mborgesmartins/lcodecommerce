@@ -97,6 +97,30 @@ class CheckoutController extends Controller
 
     }
 
+    public function status_change (Request $request, Locator $locator, Order $orderModel)
+    {
+
+        $transaction_code = $request->get('transaction_id');
+
+        $transaction = $locator->getByCode($transaction_code);
+
+        $status = $transaction->getDetails()->getStatus();
+        $code = $transaction->getDetails()->getCode();
+
+        $order = $orderModel->find(1);
+        $order->update(['status'=>$status, 'payment_code'=>$code]);
+
+        $code = $transaction->getDetails()->getReference();
+
+        $order = $orderModel->find(2);
+        $order->update(['status'=>$status, 'payment_code'=>$code]);
+
+
+        return true;
+
+
+    }
+
     public function test(CheckoutService $checkoutService ) {
 
 /*
