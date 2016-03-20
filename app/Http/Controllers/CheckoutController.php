@@ -76,6 +76,7 @@ class CheckoutController extends Controller
 
 
         $transaction_code = $request->get('transaction_id');
+        dd($request);
 
         $transaction = $locator->getByCode($transaction_code);
 
