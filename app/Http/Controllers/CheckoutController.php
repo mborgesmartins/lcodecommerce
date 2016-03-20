@@ -80,11 +80,17 @@ class CheckoutController extends Controller
         $transaction = $locator->getByCode($transaction_code);
 
         $status = $transaction->getDetails()->getStatus();
-        dd($transaction);
+        $code = $transaction->getDetails()->getCode();
 
-        $order = $orderModel->where('payment_code','=',)
+        $order = $orderModel->find(1);
+        $order->update(['status'=>$status, 'payment_code'=>$code]);
 
-        return "entrei";
+        $code = $transaction->getDetails()->getReference();
+
+        $order = $orderModel->find(2);
+        $order->update(['status'=>$status, 'payment_code'=>$code]);
+
+        return true;
 
 
     }
