@@ -90,11 +90,11 @@ class CheckoutController extends Controller
 
     }
 
-    public function status_change(Request $request, \PHPSC\PagSeguro\Purchases\Transactions\Locator $locator, Order $orderModel)
+    public function status_change(Request $request, Locator $locator, Order $orderModel)
     {
-        $transaction_code = $request->get('notificationCode');
+        $notification_code = $request->get('notificationCode');
 
-        $transaction = $locator->getByCode($transaction_code);
+        $transaction = $locator->getByNotification($notification_code);
 
         $status = $transaction->getDetails()->getStatus();
         $code = $transaction->getDetails()->getCode();
