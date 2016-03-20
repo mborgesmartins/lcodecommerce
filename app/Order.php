@@ -27,6 +27,7 @@ class Order extends Model
         5 => 'Em disputa',
         6 => 'Devolvida',
         7 => 'Cancelado'
+        
     ];
 
     public function user() {
