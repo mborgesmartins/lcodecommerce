@@ -20,11 +20,13 @@ class Order extends Model
     private $status_types = [
 
         0 => 'Pendente',
-        1 => 'Pago',
-        2 => 'Expedido',
-        3 => 'Entregue',
+        1 => 'Aguarda Pagamento',
+        2 => 'Em análise',
+        3 => 'Pago',
         4 => 'Disponível',
-        9 => 'Cancelado'
+        5 => 'Em disputa',
+        6 => 'Devolvida',
+        7 => 'Cancelado'
     ];
 
     public function user() {
