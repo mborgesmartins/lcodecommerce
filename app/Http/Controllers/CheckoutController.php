@@ -79,6 +79,7 @@ class CheckoutController extends Controller
         dd($request);
 
         $transaction = $locator->getByCode($transaction_code);
+        dd($transaction);
 
         $status = $transaction->getDetails()->getStatus();
         $code = $transaction->getDetails()->getCode();
@@ -92,7 +93,6 @@ class CheckoutController extends Controller
         $order->update(['status'=>$status, 'payment_code'=>$code]);
 
 
-        dd($transaction);
         return true;
 
 
