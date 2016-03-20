@@ -75,6 +75,15 @@ class CheckoutController extends Controller
     public function retorno (Request $request, Locator $locator, Order $orderModel) {
 
 
+        $transaction_code = $request->get('transaction_id');
+
+        $transaction = $locator->getByCode($transaction_code);
+
+        $status = $transaction->getDetails()->getStatus();
+        dd($transaction);
+
+        $order = $orderModel->where('payment_code','=',)
+
         return "entrei";
 
 
