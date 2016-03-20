@@ -100,7 +100,7 @@ class CheckoutController extends Controller
         $code = $transaction->getDetails()->getCode();
         $order_id = $transaction->getDetails()->getReference();
 
-        echo 'Notificação: ' . $$notification_code . '<br>';
+        echo 'Notificação: ' . $notification_code . '<br>';
         echo 'Transação: ' . $code . '<br>';
         echo 'Order id: ' . $order_id . '<br>';
         echo 'Status: ' . $status . '<br>';
