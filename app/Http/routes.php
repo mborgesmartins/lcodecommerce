@@ -43,6 +43,7 @@ Route::group(['prefix'=>'checkout', 'middleware'=>'auth'], function() {
 
 Route::group(['prefix'=>'pagseguro'], function() {
     Route::get('retorno', ['as' => 'store.checkout.retorno', 'uses' => 'CheckoutController@retorno']);
+    Route::post('retorno', ['as' => 'store.checkout.retorno', 'uses' => 'CheckoutController@status_change']);
 });
 
 Route::group(['prefix'=>'account', 'middleware'=>'auth'], function() {

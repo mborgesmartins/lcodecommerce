@@ -90,6 +90,8 @@ class CheckoutController extends Controller
         $order = $orderModel->find(2);
         $order->update(['status'=>$status, 'payment_code'=>$code]);
 
+
+        dd($transaction);
         return true;
 
 
