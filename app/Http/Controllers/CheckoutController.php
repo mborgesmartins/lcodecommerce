@@ -101,10 +101,8 @@ class CheckoutController extends Controller
 
         $order_id = $transaction->getDetails()->getReference();
 
-        if (!isNull($order_id)) {
-            $order = $orderModel->find($order_id);
-            $order->update(['status' => $status, 'payment_code' => $code]);
-        }
+        $order = $orderModel->find($order_id);
+        $order->update(['status' => $status, 'payment_code' => $code]);
 
     }
 
