@@ -49,6 +49,7 @@ class CheckoutController extends Controller
             }
 
             $checkout = $checkoutService->createCheckoutBuilder();
+            $checkout->setReference($order->id);
 
             foreach($order->items as $order_item)
 
@@ -72,7 +73,7 @@ class CheckoutController extends Controller
 
     }
 
-    public function retorno (Request $request, Locator $locator, Order $orderModel) {
+    public function retorno (Request $request, \PHPSC\PagSeguro\Purchases\Transactions\Locator $locator, Order $orderModel) {
 
 
         $transaction_code = $request->get('transaction_id');
