@@ -86,15 +86,22 @@ class CheckoutController extends Controller
         $order = $orderModel->find($order_id);
         $order->update(['status'=>$status, 'payment_code'=>$code]);
 
-        return redirect()->route('admin.orders');
+        return redirect()->route('account.orders');
 
     }
 
     public function status_change (Request $request, Locator $locator, Order $orderModel)
     {
+        $transaction_code = $request->get('notificationCode');
 
-        return "ok";
+        $transaction = $locator->getByCode($transaction_code);
 
+        $status = $transaction->getDetails()->getStatus();
+        $code = $transaction->getDetails()->getCode();
+        $order_id = $transaction->getDetails()->getReference();
+
+        $order = $orderModel->find($order_id);
+        $order->update(['status'=>$status, 'payment_code'=>$code]);
 
     }
 
