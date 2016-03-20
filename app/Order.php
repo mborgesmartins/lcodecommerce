@@ -13,7 +13,8 @@ class Order extends Model
     protected $fillable = [
         'user_id',
         'total',
-        'status'
+        'status',
+        'payment_code'
         ];
 
     private $status_types = [

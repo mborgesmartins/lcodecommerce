@@ -7,9 +7,11 @@ use CodeCommerce\Events\CheckoutEvent;
 use CodeCommerce\Http\Requests;
 use CodeCommerce\Order;
 use CodeCommerce\OrderItems;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use PHPSC\PagSeguro\Items\Item;
+use PHPSC\PagSeguro\Purchases\Subscriptions\Locator;
 use PHPSC\PagSeguro\Requests\Checkout\CheckoutService;
 
 
@@ -18,10 +20,10 @@ class CheckoutController extends Controller
 
     public function __construct() {
 
-        $this->middleware('auth');
+        //$this->middleware('auth');
     }
 
-    public function place_order(Order $orderModel,OrderItems $orderItems) {
+    public function place_order(Order $orderModel,OrderItems $orderItems, CheckoutService $checkoutService) {
 
         if (!Session::has('cart')) {
             return false;
@@ -46,14 +48,35 @@ class CheckoutController extends Controller
                     ]);
             }
 
+            $checkout = $checkoutService->createCheckoutBuilder();
 
+            foreach($order->items as $order_item)
+
+                $checkout->addItem(new Item($order_item->product_id,
+                            $order_item->product->name,
+                            $order_item->price)
+                    );
+
+
+            $response = $checkoutService->checkout($checkout->getCheckout());
+
+            $order->update(['payment_code'=>$response->getCode()]);
             event( new CheckoutEvent($order, Auth::user()));
             $cart->clear();
 
-            return view('checkout.place_order', ['order'=>$order, 'cart'=>'saved', 'categories'=>$categories]);
+            return redirect($response->getRedirectionUrl());
+            //return view('checkout.place_order', ['order'=>$order, 'cart'=>'saved', 'categories'=>$categories]);
         }
 
         return view('checkout.place_order', ['cart'=>'empty', 'categories'=>$categories]);
+
+    }
+
+    public function retorno (Request $request, Locator $locator, Order $orderModel) {
+
+
+        return "entrei";
+
 
     }
 

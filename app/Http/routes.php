@@ -39,7 +39,10 @@ Route::group(['prefix'=>'store'], function() {
 Route::group(['prefix'=>'checkout', 'middleware'=>'auth'], function() {
 
     Route::get('place_order', ['as' => 'checkout.place.order', 'uses' => 'CheckoutController@place_order']);
+});
 
+Route::group(['prefix'=>'pagseguro'], function() {
+    Route::get('retorno', ['as' => 'store.checkout.retorno', 'uses' => 'CheckoutController@retorno']);
 });
 
 Route::group(['prefix'=>'account', 'middleware'=>'auth'], function() {
