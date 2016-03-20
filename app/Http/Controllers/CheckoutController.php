@@ -96,15 +96,15 @@ class CheckoutController extends Controller
 
         $transaction = $locator->getByNotification($notification_code);
 
-        dd($transaction);
-
         $status = $transaction->getDetails()->getStatus();
         $code = $transaction->getDetails()->getCode();
 
         $order_id = $transaction->getDetails()->getReference();
 
-        $order = $orderModel->find($order_id);
-        $order->update(['status'=>$status, 'payment_code'=>$code]);
+        if (!isNull($order_id)) {
+            $order = $orderModel->find($order_id);
+            $order->update(['status' => $status, 'payment_code' => $code]);
+        }
 
     }
 
