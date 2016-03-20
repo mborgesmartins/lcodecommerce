@@ -90,7 +90,7 @@ class CheckoutController extends Controller
 
     }
 
-    public function status_change(Request $request, Locator $locator, Order $orderModel)
+    public function status_change(Request $request, \PHPSC\PagSeguro\Purchases\Transactions\Locator $locator, Order $orderModel)
     {
         $notification_code = $request->get('notificationCode');
 
