@@ -16,7 +16,7 @@
                             <td class="itens">Itens</td>
                             <td class="total">Total</td>
                             <td class="status">Status</td>
-
+                            <td class="transacao">Transação</td>
                         </tr>
                     </thead>
 
@@ -37,6 +37,7 @@
                                 </td>
                                 <td class="cart_total">{{ $order->total}}</td>
                                 <td class="cart_status">{{ $order->status_name}}</td>
+                                <td class="cart_status">{{ $order->payment_code}}</td>
                             </tr>
 
                         @empty

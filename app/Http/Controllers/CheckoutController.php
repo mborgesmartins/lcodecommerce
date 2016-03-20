@@ -75,49 +75,25 @@ class CheckoutController extends Controller
 
     public function retorno (Request $request, \PHPSC\PagSeguro\Purchases\Transactions\Locator $locator, Order $orderModel) {
 
-
         $transaction_code = $request->get('transaction_id');
 
         $transaction = $locator->getByCode($transaction_code);
-        dd($transaction);
 
         $status = $transaction->getDetails()->getStatus();
         $code = $transaction->getDetails()->getCode();
+        $order_id = $transaction->getDetails()->getReference();
 
-        $order = $orderModel->find(1);
+        $order = $orderModel->find($order_id);
         $order->update(['status'=>$status, 'payment_code'=>$code]);
 
-        $code = $transaction->getDetails()->getReference();
-
-        $order = $orderModel->find(2);
-        $order->update(['status'=>$status, 'payment_code'=>$code]);
-
-
-        return true;
-
+        return redirect()->route('admin.orders');
 
     }
 
     public function status_change (Request $request, Locator $locator, Order $orderModel)
     {
 
-        $transaction_code = $request->get('transaction_id');
-
-        $transaction = $locator->getByCode($transaction_code);
-
-        $status = $transaction->getDetails()->getStatus();
-        $code = $transaction->getDetails()->getCode();
-
-        $order = $orderModel->find(1);
-        $order->update(['status'=>$status, 'payment_code'=>$code]);
-
-        $code = $transaction->getDetails()->getReference();
-
-        $order = $orderModel->find(2);
-        $order->update(['status'=>$status, 'payment_code'=>$code]);
-
-
-        return true;
+        return "ok";
 
 
     }
