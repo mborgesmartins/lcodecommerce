@@ -23,6 +23,7 @@ class Order extends Model
         1 => 'Pago',
         2 => 'Expedido',
         3 => 'Entregue',
+        4 => 'Disponível',
         9 => 'Cancelado'
     ];
 
