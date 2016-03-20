@@ -98,8 +98,12 @@ class CheckoutController extends Controller
 
         $status = $transaction->getDetails()->getStatus();
         $code = $transaction->getDetails()->getCode();
-
         $order_id = $transaction->getDetails()->getReference();
+
+        echo 'Notificação: ' . $$notification_code . '<br>';
+        echo 'Transação: ' . $code . '<br>';
+        echo 'Order id: ' . $order_id . '<br>';
+        echo 'Status: ' . $status . '<br>';
 
         $order = $orderModel->find($order_id);
         $order->update(['status' => $status, 'payment_code' => $code]);
